@@ -7,51 +7,133 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="w-full h-full flex justify-center items-center">
-    <div>
-        <h1>TDZ passphrase generator</h1>
-        <form onsubmit="handle_click">
-            <input type="text" name="passphrase" id="passphrase" class="border-2 border-black">
-            <button type="button" id="generate" class="border-2 border-black">Generate</button>
+<body class="w-screen h-screen flex justify-center items-center overflow-hidden">
+    <div class="flex flex-col items-center gap-3 mt-12 w-full">
+        <h1 class="text-2xl">TDZ passphrase generator</h1>
+        <form id="passphrase_form" class="flex flex-col items-center gap-2 mt-8 w-full">
+            <input type="text" name="passphrase" id="passphrase"
+                class="border-2 border-black px-2 py-1 w-1/2 text-center">
+            <div class="flex flex-row items-center gap-4">
+                <button type="submit" id="generate"
+                    class="border-2 border-black px-2 py-1 transform hover:scale-[110%]">Generate</button>
+                <button type="button" id="copy"
+                    class="border-2 border-black px-2 py-1 transform hover:scale-[110%]">Copy</button>
+                <button type="button" id="clear"
+                    class="border-2 border-black px-2 py-1 transform hover:scale-[110%]">Clear</button>
+            </div>
         </form>
     </div>
+    <svg class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] opacity-20 z-[-10]" width="2800"
+        height="2919" viewBox="0 0 2800 2919" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M1544.36 1407.54H1312.66C1308.83 1407.54 1305.72 1404.43 1305.72 1400.6C1305.72 1396.77 1308.83 1393.66 1312.66 1393.66H1388.1C1403.57 1393.66 1416.1 1381.13 1416.1 1365.66V1349.21C1416.1 1333.75 1403.57 1321.21 1388.1 1321.21H1325.77C1322.24 1321.21 1319.38 1318.35 1319.38 1314.82C1319.38 1311.29 1322.24 1308.43 1325.77 1308.43H1388.1C1403.57 1308.43 1416.1 1295.89 1416.1 1280.43V1269.44C1416.1 1265.02 1419.69 1261.44 1424.1 1261.44H1426.9C1431.32 1261.44 1434.9 1265.02 1434.9 1269.44V1280.43C1434.9 1295.89 1447.44 1308.43 1462.9 1308.43H1531.25C1534.78 1308.43 1537.64 1311.29 1537.64 1314.82C1537.64 1318.35 1534.78 1321.21 1531.25 1321.21H1462.9C1447.44 1321.21 1434.9 1333.75 1434.9 1349.21V1365.66C1434.9 1381.13 1447.44 1393.66 1462.9 1393.66H1544.36C1548.19 1393.66 1551.3 1396.77 1551.3 1400.6C1551.3 1404.43 1548.19 1407.54 1544.36 1407.54ZM1505.18 1555.26V1513.67C1505.18 1498.21 1492.64 1485.67 1477.18 1485.67H1377.66C1362.19 1485.67 1349.66 1498.21 1349.66 1513.67V1555.26C1349.66 1570.73 1362.19 1583.26 1377.66 1583.26H1477.18C1492.64 1583.26 1505.18 1570.73 1505.18 1555.26ZM1523.43 1481.44V1587.5C1523.43 1591.92 1519.85 1595.5 1515.43 1595.5H1374.95C1360.98 1595.5 1349.66 1606.83 1349.66 1620.8C1349.66 1623.72 1347.28 1626.1 1344.36 1626.1H1340.5C1336.08 1626.1 1332.5 1622.52 1332.5 1618.1V1481.44C1332.5 1477.02 1336.08 1473.44 1340.5 1473.44H1515.43C1519.85 1473.44 1523.43 1477.02 1523.43 1481.44ZM1251.42 1212.26H1612.16C1616.57 1212.26 1620.16 1215.84 1620.16 1220.26V1623.53C1620.16 1635.95 1618.43 1643.21 1615.78 1647.91C1613.33 1652.25 1609.46 1655.52 1602.37 1658.51C1596.11 1660.91 1587.21 1662.54 1574.35 1663.52C1561.5 1664.51 1545.42 1664.8 1525.16 1664.87C1521.96 1664.88 1519.16 1662.93 1518.05 1659.4C1517.19 1656.67 1517.67 1653.37 1519.33 1650.75C1520.94 1648.21 1523.02 1647.18 1524.95 1647.2C1548.76 1647.44 1568.93 1647.06 1576.35 1646.64C1581.93 1646.62 1588.72 1645.81 1593.73 1640.96C1598.94 1635.92 1599.72 1628.99 1599.72 1623.53V1258.51C1599.72 1243.05 1587.18 1230.51 1571.72 1230.51H1291.31C1275.85 1230.51 1263.31 1243.05 1263.31 1258.51V1377.65C1263.31 1461.55 1255.61 1574.19 1206.31 1655.43C1205.42 1656.9 1203.76 1658.01 1201.16 1658.22C1198.46 1658.44 1195.48 1657.57 1193.28 1655.79C1188.74 1652.12 1187.61 1645.24 1190.2 1640.96C1238.84 1560.65 1243.42 1455.91 1243.42 1377.65V1220.26C1243.42 1215.84 1247 1212.26 1251.42 1212.26Z"
+            fill="url(#paint0_linear_2630_613)" stroke="url(#paint1_linear_2630_613)" stroke-width="20" />
+        <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M1401.51 266.836L1556.26 0L1671.14 66.6282L1478.18 399.354L2774.52 2639.87C2846.24 2763.82 2756.79 2918.92 2613.58 2918.92L186.212 2918.92C42.9197 2918.92 -46.5173 2763.66 25.3699 2639.71L1324.7 399.276L1132.2 66.5699L1247.15 0.058297L1401.51 266.836ZM1401.37 531.795L140.257 2706.33C119.718 2741.75 145.271 2786.11 186.212 2786.11H834.168L1240.51 2078.53C1311.83 1954.34 1490.86 1954.01 1562.64 2077.92L1972.86 2786.11L2613.58 2786.11C2654.5 2786.11 2680.06 2741.8 2659.57 2706.38L1401.37 531.795ZM1819.38 2786.11L1447.72 2144.49C1427.21 2109.09 1376.06 2109.18 1355.68 2144.66L987.319 2786.11H1819.38Z"
+            fill="url(#paint2_linear_2630_613)" />
+        <defs>
+            <linearGradient id="paint0_linear_2630_613" x1="1400.37" y1="1202.26" x2="1400.37" y2="1678.72"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#589CFD" />
+                <stop offset="0.494792" stop-color="#FE5782" />
+                <stop offset="1" stop-color="#FFD99B" />
+            </linearGradient>
+            <linearGradient id="paint1_linear_2630_613" x1="1400.37" y1="1202.26" x2="1400.37" y2="1678.72"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#589CFD" />
+                <stop offset="0.492708" stop-color="#FE5782" />
+                <stop offset="1" stop-color="#FFD99B" />
+            </linearGradient>
+            <linearGradient id="paint2_linear_2630_613" x1="1399.78" y1="507.001" x2="1399.78" y2="2730.27"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#589CFD" />
+                <stop offset="0.492708" stop-color="#FE5782" />
+                <stop offset="1" stop-color="#FFD99B" />
+            </linearGradient>
+        </defs>
+    </svg>
+
 </body>
 
 <footer>
     <script>
         const passphrase_input_field = document.getElementById('passphrase');
         const generate_button = document.getElementById('generate');
+        const passphrase_form = document.getElementById('passphrase_form');
+        const copy_btn = document.getElementById('copy');
+        const clear_btn = document.getElementById('clear');
+        const url = "https://raw.githubusercontent.com/zhou-efr/tdz_passphrase_generator/main/english.txt";
+        const separators = ['-', '_', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        let words = [];
 
-        const handle_click = (e) => {
-            e.preventDefault();
-
-            // get five random words from a txt file on url
-            const url = "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa.txt";
-            // separators =  __--0123456789
-            const passphrase_separators = [',', '.', '?', '!', ';', ':', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        // load the words from the txt file on page load
+        window.onload = () => {
             fetch(url)
                 .then(response => response.text())
                 .then(text => {
-                    const words = text.split('\n');
-                    const passphrase = [];
-                    for (let i = 0; i < 5; i++) {
-                        const random_index = Math.floor(Math.random() * words.length);
-                        passphrase.push(words[random_index]);
-                    }
-                    // different separators for each word
-                    const passphrase_with_separators = [];
-                    for (let i = 0; i < passphrase.length; i++) {
-                        const random_index = Math.floor(Math.random() * passphrase_separators.length);
-                        passphrase_with_separators.push(passphrase[i] + passphrase_separators[random_index]);
-                    }
-                    // join the words with the separators
-                    const passphrase_string = passphrase_with_separators.join('');
-                    // set the passphrase to the input field
-                    passphrase_input_field.value = passphrase_string;
+                    words = text.split('\n');
+                    console.log(words);
                 }
                 )
         }
 
+        const handle_copy = (e) => {
+            e.preventDefault();
+
+            if (!passphrase_input_field.value) {
+                alert('No passphrase to copy');
+                return;
+            }
+
+            passphrase_input_field.select();
+            passphrase_input_field.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            // alert('Copied the passphrase: ' + passphrase_input_field.value);
+            // btn copy border color to green
+            copy_btn.style.borderColor = '#8AA175';
+        }
+
+        const handle_clear = (e) => {
+            e.preventDefault();
+
+            if (!passphrase_input_field.value) {
+                alert('No passphrase to clear');
+                return;
+            }
+
+            passphrase_input_field.value = '';
+            // btn copy border color to green
+            copy_btn.style.borderColor = '#8AA175';
+        }
+
+        const handle_click = (e) => {
+            e.preventDefault();
+
+            if (!words) {
+                alert('Words not loaded yet');
+                return;
+            }
+
+            console.log('clicked');
+
+            // generate a passphrase
+            // 4 words, 20 characters, different separators, uppercase on first letter
+
+            let passphrase = '';
+
+            for (let i = 0; i < 4; i++) {
+                let word = words[Math.floor(Math.random() * words.length)];
+                word = word.charAt(0).toUpperCase() + word.slice(1);
+                passphrase += word;
+                passphrase += separators[Math.floor(Math.random() * separators.length)];
+            }
+
+            passphrase_input_field.value = passphrase;
+        }
+
+        passphrase_form.addEventListener('submit', handle_click);
+        copy_btn.addEventListener('click', handle_copy);
+        clear_btn.addEventListener('click', handle_clear);
     </script>
 </footer>
 
