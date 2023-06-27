@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="w-full h-full flex justify-center items-center">
+    <div>
+        <h1>TDZ passphrase generator</h1>
+        <form onsubmit="handle_click">
+            <input type="text" name="passphrase" id="passphrase" class="border-2 border-black">
+            <button type="button" id="generate" class="border-2 border-black">Generate</button>
+        </form>
+    </div>
+</body>
+
+<footer>
+    <script>
+        const passphrase_input_field = document.getElementById('passphrase');
+        const generate_button = document.getElementById('generate');
+
+        const handle_click = (e) => {
+            e.preventDefault();
+
+            // get five random words from a txt file on url
+            const url = "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa.txt";
+            // separators =  __--0123456789
+            const passphrase_separators = [',', '.', '?', '!', ';', ':', '-', '_', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+            fetch(url)
+                .then(response => response.text())
+                .then(text => {
+                    const words = text.split('\n');
+                    const passphrase = [];
+                    for (let i = 0; i < 5; i++) {
+                        const random_index = Math.floor(Math.random() * words.length);
+                        passphrase.push(words[random_index]);
+                    }
+                    // different separators for each word
+                    const passphrase_with_separators = [];
+                    for (let i = 0; i < passphrase.length; i++) {
+                        const random_index = Math.floor(Math.random() * passphrase_separators.length);
+                        passphrase_with_separators.push(passphrase[i] + passphrase_separators[random_index]);
+                    }
+                    // join the words with the separators
+                    const passphrase_string = passphrase_with_separators.join('');
+                    // set the passphrase to the input field
+                    passphrase_input_field.value = passphrase_string;
+                }
+                )
+        }
+
+    </script>
+</footer>
+
+</html>
