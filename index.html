@@ -128,7 +128,9 @@
                 passphrase += separators[Math.floor(Math.random() * separators.length)];
             }
 
-            passphrase_input_field.value = passphrase;
+            // add random digit at the end
+
+            passphrase_input_field.value = passphrase + Math.floor(Math.random() * 10); s
         }
 
         passphrase_form.addEventListener('submit', handle_click);
